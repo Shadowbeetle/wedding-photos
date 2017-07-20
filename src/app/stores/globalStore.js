@@ -1,11 +1,13 @@
-import { observable, extendObservable } from 'mobx'
+import { observable, extendObservable, runInAction } from 'mobx'
 import Api from '../util/api'
 
 class Store {
   constructor () {
     extendObservable(this, {
       thumbnails: observable.array(),
-      fetching: false
+      fetching: false,
+      isLightboxOpen: false,
+      lightboxImage: {}
     })
   }
 
@@ -20,6 +22,25 @@ class Store {
         this.fetching = false
         console.error(err)
       })
+  }
+
+  openLightbox (thumbnail) {
+    runInAction (() => {
+      this.isLightboxOpen = true
+      this.lightboxImage = thumbnail
+    })
+  }
+
+  closeLightbox = () => {
+    this.isLightboxOpen = false
+  }
+
+  showPrevLightboxImage = () => {
+    this.lightboxImage = this.thumbnails[(this.lightboxImage.index + this.thumbnails.length - 1) % this.thumbnails.length]
+  }
+
+  showNextLightboxImage = () => {
+    this.lightboxImage = this.thumbnails[(this.lightboxImage.index + 1) % this.thumbnails.length]
   }
 }
 

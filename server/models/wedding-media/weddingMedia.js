@@ -21,12 +21,14 @@ function listMediaByType (type) {
     .then((objects) => {
       return _.chain(objects.Contents)
         .tail()
-        .map((content) => {
+        .map((content, i) => {
           const name = path.basename(content.Key)
           return {
             name,
             key: content.Key,
-            dimensions: metadata[ name ]
+            largeKey: content.Key.replace('thumbnails', 'large'),
+            dimensions: metadata[ name ],
+            index: i
           }
         })
         .value()

@@ -14,3 +14,7 @@
   background-color: grey;
   margin: 10px;
 }
+
+.wedding-photo {
+  cursor: pointer;
+}
