@@ -1,0 +1,16 @@
+.wedding-gallery-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.wedding-grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.wedding-photo-placeholder {
+  background-color: grey;
+  margin: 10px;
+}
