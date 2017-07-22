@@ -1,3 +1,11 @@
+.navbar-brand {
+  font-size: 28px;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a {
+  color: black;
+}
 .navbar-fixed-bottom, .navbar-fixed-top {
   z-index: 1;
 }

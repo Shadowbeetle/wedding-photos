@@ -55,7 +55,7 @@ class Photos extends Component {
 
   render () {
     return (
-      <div>
+      <div className="container">
         <Nav activePage="photos" lang={this.props.lang}/>
         {this.props.store.fetching ? 'Loading...' : 'Photos'}
         {this.renderLightbox()}

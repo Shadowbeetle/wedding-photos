@@ -8,7 +8,7 @@ import './nav.css'
 
 class Nav extends Component {
   navigate = (evt) => {
-    page(`/${evt.target.name}`)
+    page(`/${evt.target.name}${window.location.search}`)
     evt.preventDefault()
   }
 
@@ -17,29 +17,32 @@ class Nav extends Component {
     return (
       <nav className="navbar navbar-default navbar-fixed-top wedding-navbar">
         <div className="container">
-        <ul className="nav navbar-nav">
-          <li className="nav-item">
-            <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'photos' })}
-               data-toggle="tab"
-               onClick={this.navigate}
-               href="/photos"
-               name="photos">
-              {locale.photos[ lang ]}
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'videos' })}
-               data-toggle="tab"
-               onClick={this.navigate}
-               href="/videos"
-               name="videos">
-              {locale.videos[ lang ]}
-            </a>
-          </li>
-        </ul>
-        <ul className="nav navbar-nav navbar-right">
-          <LangFlag targetLang={lang === 'hu' ? 'en' : 'hu'}/>
-        </ul>
+          <div className="navbar-header">
+            <a className="navbar-brand" href={`?lang=${lang}`}>{locale.title[ lang ]}</a>
+          </div>
+          <ul className="nav navbar-nav">
+            <li className="nav-item">
+              <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'photos' })}
+                 data-toggle="tab"
+                 onClick={this.navigate}
+                 href="/photos"
+                 name="photos">
+                {locale.photos[ lang ]}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'videos' })}
+                 data-toggle="tab"
+                 onClick={this.navigate}
+                 href="/videos"
+                 name="videos">
+                {locale.videos[ lang ]}
+              </a>
+            </li>
+          </ul>
+          <ul className="nav navbar-nav navbar-right">
+            <LangFlag targetLang={lang === 'hu' ? 'en' : 'hu'}/>
+          </ul>
         </div>
       </nav>
     )
