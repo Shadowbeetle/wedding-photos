@@ -3,6 +3,7 @@ import page from 'page'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import locale from '../texts/locale.json'
+import LangFlag from './langFlag'
 import './nav.css'
 
 class Nav extends Component {
@@ -14,10 +15,11 @@ class Nav extends Component {
   render () {
     const { activePage, lang } = this.props
     return (
-      <nav className="navbar navbar-default navbar-fixed-top">
+      <nav className="navbar navbar-default navbar-fixed-top wedding-navbar">
+        <div className="container">
         <ul className="nav navbar-nav">
           <li className="nav-item">
-            <a className={classNames('nav-link', { 'active': activePage === 'photos' })}
+            <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'photos' })}
                data-toggle="tab"
                onClick={this.navigate}
                href="/photos"
@@ -26,7 +28,7 @@ class Nav extends Component {
             </a>
           </li>
           <li className="nav-item">
-            <a className={classNames('nav-link', { 'active': activePage === 'videos' })}
+            <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'videos' })}
                data-toggle="tab"
                onClick={this.navigate}
                href="/videos"
@@ -35,13 +37,17 @@ class Nav extends Component {
             </a>
           </li>
         </ul>
+        <ul className="nav navbar-nav navbar-right">
+          <LangFlag targetLang={lang === 'hu' ? 'en' : 'hu'}/>
+        </ul>
+        </div>
       </nav>
     )
   }
 }
 
 Nav.propTypes = {
-  lang: PropTypes.string.isRequired,
+  lang: PropTypes.oneOf([ 'hu', 'en' ]).isRequired,
   activePage: PropTypes.oneOf([ 'photos', 'videos' ]).isRequired
 }
 

@@ -1,5 +1,17 @@
 body {
-  margin: 0;
+  margin: 60px 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #fbffe8;
+}
+
+@font-face {
+  font-family: 'Italianno';
+  src:  url('assets/fonts/Italianno.ttf.woff') format('woff'),
+  url('assets/fonts/Italianno.ttf.svg#Italianno') format('svg'),
+  url('assets/fonts/Italianno.ttf.eot'),
+  url('assets/fonts/Italianno.ttf'),
+  url('assets/fonts/Italianno.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
 }
