@@ -1,7 +1,6 @@
 import page from 'page'
 import React from "react"
 import qs from 'query-string'
-import LandingPage from "../pages/landingPage"
 import Photos from "../pages/photos"
 import Videos from "../pages/videos"
 import { globalStore } from '../stores'
@@ -21,7 +20,7 @@ export default function router (self) {
   page('*', getLang)
 
   page('/', (ctx) => {
-    self.setState({component: <LandingPage lang={ctx.lang} store={globalStore}/>})
+    page.redirect('/photos')
   })
 
   page('/photos', (ctx) => {

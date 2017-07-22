@@ -11,15 +11,16 @@ const publicPath = path.join(__dirname, '../build')
 
 app.use(helmet())
 app.use(compression())
-app.use(express.static(publicPath))
 app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
-app.use(express.static('build'))
-
+app.get(['/', '/photos', '/videos'], routes.root)
 app.get('/api/media/photos', routes.media.photos.getAllPhotoNames.bind(null, models))
 app.get('/api/media/photos/:photoKey', routes.media.photos.getPhoto.bind(null, models))
-app.get('*', routes.root)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(publicPath))
+}
 
 module.exports = app

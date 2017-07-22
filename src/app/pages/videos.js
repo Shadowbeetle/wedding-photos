@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import locale from '../texts/locale.json'
+import Nav from '../components/nav'
 
 class Photos extends Component {
   constructor (props) {
@@ -13,6 +14,7 @@ class Photos extends Component {
   render () {
     return (
       <div>
+        <Nav activePage="videos" lang={this.props.lang}/>
         Videos
       </div>
     )

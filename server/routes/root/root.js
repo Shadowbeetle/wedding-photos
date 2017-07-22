@@ -11,9 +11,9 @@ module.exports = function getAllPhotoNames (req, res) {
         'x-sent': true
       }
     }, (err) => {
-      console.error(err)
+      console.error(err, 'root')
     })
   } else {
-    return res.redirect('localhost:3000')
+    return res.redirect('http://localhost:3000')
   }
 }
