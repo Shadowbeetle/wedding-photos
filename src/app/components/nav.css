@@ -10,6 +10,10 @@
   z-index: 1;
 }
 
+.navbar-brand>img {
+  display: initial;
+}
+
 .wedding-navbar {
   font-family: Italianno;
   background: #fbffe8;
@@ -22,4 +26,13 @@
 
 .wedding-navigate {
   font-size: 24px;
+}
+
+.wedding-logo {
+  max-height: 40px;
+  margin-top: -10px;
+}
+
+.wedding-brand-logo {
+  margin-right: -15px;
 }

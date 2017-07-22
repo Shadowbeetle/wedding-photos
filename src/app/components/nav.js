@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import locale from '../texts/locale.json'
 import LangFlag from './langFlag'
 import './nav.css'
-
+import logo from '../../assets/img/logo.svg'
 class Nav extends Component {
   navigate = (evt) => {
     page(`/${evt.target.name}${window.location.search}`)
@@ -25,7 +25,12 @@ class Nav extends Component {
         <div className="collapse navbar-collapse" id="navbar-content">
           <div className="container">
             <div className="navbar-header">
-              <a className="navbar-brand" href={`?lang=${lang}`}>{locale.title[ lang ]}</a>
+              <a className="navbar-brand wedding-brand-logo" href={`?lang=${lang}`}>
+                <img alt="logo" src={logo} className="wedding-logo"/>
+              </a>
+              <a className="navbar-brand wedding-brand-text" href={`?lang=${lang}`}>
+                <span>{locale.title[ lang ]}</span>
+              </a>
             </div>
             <ul className="nav navbar-nav">
               <li className="nav-item">

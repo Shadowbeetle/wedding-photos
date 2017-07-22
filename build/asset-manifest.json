@@ -1,13 +1,14 @@
 {
-  "main.css": "static/css/main.b29ec2ca.css",
-  "main.css.map": "static/css/main.b29ec2ca.css.map",
-  "main.js": "static/js/main.76bd29f8.js",
-  "main.js.map": "static/js/main.76bd29f8.js.map",
+  "main.css": "static/css/main.0e20691e.css",
+  "main.css.map": "static/css/main.0e20691e.css.map",
+  "main.js": "static/js/main.1a054ee0.js",
+  "main.js.map": "static/js/main.1a054ee0.js.map",
   "static/media/Italianno.eot": "static/media/Italianno.623d1891.eot",
   "static/media/Italianno.ttf": "static/media/Italianno.462fa23a.ttf",
   "static/media/Italianno.ttf.eot": "static/media/Italianno.ttf.623d1891.eot",
   "static/media/Italianno.ttf.svg": "static/media/Italianno.ttf.89a57197.svg",
   "static/media/Italianno.ttf.woff": "static/media/Italianno.ttf.0969f1ec.woff",
   "static/media/en.svg": "static/media/en.fd72d9b5.svg",
-  "static/media/hu.svg": "static/media/hu.2d1fd1c8.svg"
+  "static/media/hu.svg": "static/media/hu.2d1fd1c8.svg",
+  "static/media/logo.svg": "static/media/logo.8a948885.svg"
 }
