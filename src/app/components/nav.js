@@ -25,17 +25,16 @@ class Nav extends Component {
         <div className="collapse navbar-collapse" id="navbar-content">
           <div className="container">
             <div className="navbar-header">
-              <a className="navbar-brand wedding-brand-logo" href={`?lang=${lang}`}>
+              <a className="navbar-brand wedding-brand-logo" href={`?lang=${lang}#`}>
                 <img alt="logo" src={logo} className="wedding-logo"/>
               </a>
-              <a className="navbar-brand wedding-brand-text" href={`?lang=${lang}`}>
+              <a className="navbar-brand wedding-brand-text" href={`?lang=${lang}#`}>
                 <span>{locale.title[ lang ]}</span>
               </a>
             </div>
             <ul className="nav navbar-nav">
               <li className="nav-item">
                 <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'photos' })}
-                   data-toggle="tab"
                    onClick={this.navigate}
                    href="/photos"
                    name="photos">
@@ -44,7 +43,6 @@ class Nav extends Component {
               </li>
               <li className="nav-item">
                 <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'videos' })}
-                   data-toggle="tab"
                    onClick={this.navigate}
                    href="/videos"
                    name="videos">
