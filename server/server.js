@@ -20,6 +20,6 @@ app.use(express.static('build'))
 
 app.get('/api/media/photos', routes.media.photos.getAllPhotoNames.bind(null, models))
 app.get('/api/media/photos/:photoKey', routes.media.photos.getPhoto.bind(null, models))
-app.get('/photos', routes.root)
+app.get('*', routes.root)
 
 module.exports = app
