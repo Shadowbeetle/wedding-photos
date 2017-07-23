@@ -12,7 +12,7 @@ const publicPath = path.join(__dirname, '../build')
 if (process.env.NODE_ENV === 'production' && process.env.IS_HEROKU) {
   app.use((req, res, next) => {
     if (req.headers[ 'x-forwarded-proto' ] !== 'https') {
-      res.redirect(status, 'https://' + req.hostname + req.originalUrl)
+      res.redirect(302, 'https://' + req.hostname + req.originalUrl)
     }
     else {
       next()
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production' && process.env.IS_HEROKU) {
   })
 }
 
-app.use(helmet())
+app.use(helmeht())
 app.use(compression())
 app.use(cors({
   origin: 'http://localhost:3000'
