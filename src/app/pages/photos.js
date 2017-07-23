@@ -5,6 +5,7 @@ import { map } from 'lodash'
 import locale from '../texts/locale.json'
 import Api from '../util/api'
 import Nav from '../components/nav'
+import LoadingSpinnder from '../components/loadingSpinner'
 import './photos.css'
 
 function normalizeDimensions ({ width, height }) {
@@ -57,7 +58,7 @@ class Photos extends Component {
     return (
       <div className="container">
         <Nav activePage="photos" lang={this.props.lang}/>
-        {this.props.store.fetching ? 'Loading...' : 'Photos'}
+        {this.props.store.fetching ? <LoadingSpinnder/> : null}
         {this.renderLightbox()}
         <div className="wedding-gallery-container">
           <div className="wedding-grid">
