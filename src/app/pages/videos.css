@@ -1,4 +1,5 @@
 .wedding-video-page-container {
+  margin-top: 10px;
   overflow: hidden;
   position: absolute;
   width: 100%;
@@ -15,6 +16,12 @@
   justify-content: center;
 }
 
-.wedding-video-container {
+.wedding-video-item-container {
   margin-bottom: 20px;
+}
+
+.wedding-video-container {
+  height: 270px;
+  margin-bottom: 7px;
+  background-color: black;
 }

@@ -39,12 +39,14 @@ class Videos extends Component {
       <div>
         <Nav activePage="videos" lang={lang}/>
         {this.setupDownload()}
-        <div className="wedding-video-page-container">
+        <div className="wedding-video-page-container container">
           {map([ ...videoNamesToYoutube.entries() ], ([ videoKey, youtubeId ]) => {
             return (
-              <div className="wedding-video-container" key={videoKey}>
-                <iframe width="480" height="270" src={`https://www.youtube.com/embed/${youtubeId}`} frameBorder="0"
-                        allowFullScreen title={videoKey}></iframe>
+              <div className="wedding-video-item-container" key={videoKey}>
+                <div className="wedding-video-container">
+                  <iframe width="480" height="270" src={`https://www.youtube.com/embed/${youtubeId}`} frameBorder="0"
+                        allowFullScreen title={videoKey}/>
+                </div>
                 <div className="wedding-video-download-button-container">
                   <button name={videoKey} className="btn btn-default" onClick={this.download}>
                     {locale.download[ lang ]}
