@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production' && process.env.IS_HEROKU) {
   })
 }
 
-app.use(helmeht())
+app.use(helmet())
 app.use(compression())
 app.use(cors({
   origin: 'http://localhost:3000'
