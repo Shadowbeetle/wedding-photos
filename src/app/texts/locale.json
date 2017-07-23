@@ -14,5 +14,9 @@
   "download": {
     "hu": "Letöltés",
     "en": "Download"
+  },
+  "downloadAll": {
+    "hu": "Összes letöltése",
+    "en": "Download all"
   }
 }

@@ -26,16 +26,15 @@ app.use(helmet({
     : false
 }))
 
-app.use(compression())
 app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
-app.get(['/', '/photos', '/videos'], routes.root)
-app.get('/download-frame', (req, res) => res.send())
-app.get('/api/media/photos', routes.media.photos.getAllPhotoNames.bind(null, models))
-app.get('/api/media/photos/:photoKey', routes.media.photos.getPhoto.bind(null, models))
-app.get('/api/media/videos', routes.media.videos.getAllVideoNames.bind(null, models))
+app.get(['/', '/photos', '/videos'], compression(), routes.root)
+app.get('/api/media/photos', compression(), routes.media.photos.getAllPhotoNames.bind(null, models))
+app.get('/api/media/photos/photo-bundle', routes.media.photos.getPhotoBundle.bind(null, models))
+app.get('/api/media/photos/:photoKey', compression(), routes.media.photos.getPhoto.bind(null, models))
+app.get('/api/media/videos', compression(), routes.media.videos.getAllVideoNames.bind(null, models))
 app.get('/api/media/videos/:videoKey', routes.media.videos.getVideo.bind(null, models))
 
 if (process.env.NODE_ENV === 'production') {

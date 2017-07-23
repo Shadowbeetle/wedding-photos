@@ -9,6 +9,7 @@ class Store {
       isLightboxOpen: false,
       lightboxImage: {},
       videos: observable.array(),
+      shouldDownloadPhotoBundle: false,
       shouldDownloadVideo: false,
       videoToDownload: ''
     })

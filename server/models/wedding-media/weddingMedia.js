@@ -6,6 +6,7 @@ const path = require('path')
 const s3 = new AWS.S3()
 const metadata = require('../metadata/photos.json')
 const listObjects = promisify(s3.listObjects, s3)
+const headObject = promisify(s3.headObject, s3)
 const BUCKET_NAME = 'anna-tamas-eskuvo'
 
 /**
@@ -70,10 +71,18 @@ function getMediaByKey (name) {
   }).createReadStream()
 }
 
+function getMediaDataByKey (name) {
+  return headObject({
+    Bucket: BUCKET_NAME,
+    Key: name
+  })
+}
+
 module.exports = {
   listPhotos,
   listVideos,
-  getMediaByKey
+  getMediaByKey,
+  getMediaDataByKey
 }
 
 module.exports.s3 = s3

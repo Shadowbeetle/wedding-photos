@@ -19,7 +19,8 @@ for file in images/original/*; do
   thumbnail_dimensions=$(identify -format "%[fx:w]x%[fx:h]" "$thumbnail_path")
   thumbnail_width=$(tr 'x' '\n' <<< $thumbnail_dimensions | head -n 1)
   thumbnail_height=$(tr 'x' '\n' <<< $thumbnail_dimensions | tail -n 1)
-  aws s3 cp "$thumbnail_path" s3://anna-tamas-eskuvo/professional/photos/thumbnails/ --metadata height=$thumbnail_height,width=$thumbnail_width
+  aws s3 cp "$thumbnail_path" s3://anna-tamas-eskuvo/professional/photos/thumbnails/
+  aws s3 cp "$large_path" s3://anna-tamas-eskuvo/professional/photos/large/
   echo "$filename: { width: $thumbnail_width, height: $thumbnail_height }" >> server/models/metadata/photos.yaml
   c=$(($c+1))
   echo -ne "\r$c / $all"

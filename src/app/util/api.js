@@ -10,4 +10,8 @@ Api.getMediaData = function (type) {
 Api.getMediaObjectUrl = function (type, key) {
   return `${baseUrl}/api/media/${type}/${encodeURIComponent(key)}`
 }
+
+Api.getPhotoBundleUrl = function () {
+  return `${baseUrl}/api/media/photos/photo-bundle`
+}
 export default Api
