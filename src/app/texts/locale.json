@@ -10,5 +10,9 @@
   "videos": {
     "hu": "Videók",
     "en": "Videos"
+  },
+  "download": {
+    "hu": "Letöltés",
+    "en": "Download"
   }
 }
