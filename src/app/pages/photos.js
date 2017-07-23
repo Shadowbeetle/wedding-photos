@@ -20,7 +20,7 @@ class Photos extends Component {
   constructor (props) {
     super(props)
     this.lang = this.props.lang
-    this.props.store.fetchMediaData('photos')
+    !this.props.store.thumbnails.length && this.props.store.fetchMediaData('photos')
   }
 
   componentDidMount () {
