@@ -19,12 +19,8 @@ function normalizeDimensions ({ width, height }) {
 class Photos extends Component {
   constructor (props) {
     super(props)
-    this.lang = this.props.lang
-    !this.props.store.thumbnails.length && this.props.store.fetchMediaData('photos')
-  }
-
-  componentDidMount () {
-    document.title = locale.photos[ this.props.lang ]
+    !props.store.thumbnails.length && props.store.fetchMediaData('photos')
+    document.title = locale.photos[ props.lang ]
   }
 
   handlePhotoClick = (thumbnail) => (evt) => {

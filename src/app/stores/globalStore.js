@@ -8,7 +8,9 @@ class Store {
       fetching: false,
       isLightboxOpen: false,
       lightboxImage: {},
-      videos: observable.array()
+      videos: observable.array(),
+      shouldDownloadVideo: false,
+      videoToDownload: ''
     })
   }
 

@@ -20,13 +20,19 @@ if (process.env.NODE_ENV === 'production' && process.env.IS_HEROKU) {
   })
 }
 
-app.use(helmet())
+app.use(helmet({
+  frameguard: process.env.NODE_ENV === 'production'
+    ? { action: 'sameorigin' }
+    : false
+}))
+
 app.use(compression())
 app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
 app.get(['/', '/photos', '/videos'], routes.root)
+app.get('/download-frame', (req, res) => res.send())
 app.get('/api/media/photos', routes.media.photos.getAllPhotoNames.bind(null, models))
 app.get('/api/media/photos/:photoKey', routes.media.photos.getPhoto.bind(null, models))
 app.get('/api/media/videos', routes.media.videos.getAllVideoNames.bind(null, models))

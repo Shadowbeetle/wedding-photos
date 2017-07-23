@@ -5,28 +5,42 @@ import locale from '../texts/locale.json'
 import Nav from '../components/nav'
 import Api from '../util/api'
 
+const videoNamesToYoutube = new Map([
+  [ 'professional/videos/VID_20140728_164537.mp4', 'ywzIK6Yji7c' ],
+  [ 'professional/videos/VID_20170317_141720.mp4', 'fqZppJU6jlA' ]
+])
+
 class Videos extends Component {
   constructor (props) {
     super(props)
-    !this.props.store.videos.length && this.props.store.fetchMediaData('videos')
-
+    this.props.store.shouldDownloadVideo = false
   }
 
-  componentDidMount () {
-    document.title = locale.videos[ this.props.lang ]
+  download = (evt) => {
+    this.props.store.shouldDownloadVideo = true
+    this.props.store.videoToDownload = evt.target.name
   }
 
   render () {
     const { lang, store } = this.props
-    const { videos } = store
+    const { shouldDownloadVideo, videoToDownload } = store
     return (
       <div>
         <Nav activePage="videos" lang={lang}/>
-        {map(videos, (video) => {
+        {shouldDownloadVideo
+          ? <iframe title="download"
+                    src={Api.getMediaObjectUrl('videos', videoToDownload)}
+                    style={{ visibility: 'hidden', display: 'none' }}/>
+          : null}
+        {map([ ...videoNamesToYoutube.entries() ], ([ videoKey, youtubeId ]) => {
           return (
-            <video key={video.index} width="320" height="240" controls>
-              <source src={Api.getMediaObjectUrl('videos', video.key)} type="video/mp4"/>
-            </video>
+            <div key={videoKey}>
+              <iframe width="480" height="270" src={`https://www.youtube.com/embed/${youtubeId}`} frameBorder="0"
+                      allowFullScreen title={videoKey}></iframe>
+              <button name={videoKey} className="btn btn-default" onClick={this.download}>
+                Download
+              </button>
+            </div>
           )
         })}
       </div>
