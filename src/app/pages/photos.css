@@ -18,3 +18,8 @@
 .wedding-photo {
   cursor: pointer;
 }
+
+.wedding-photo-download-button-container {
+  display: flex;
+  justify-content: center;
+}
