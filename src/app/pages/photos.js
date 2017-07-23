@@ -55,7 +55,7 @@ class Photos extends Component {
     this.props.store.shouldDownloadPhotoBundle = true
     setTimeout(() => {
       this.props.store.shouldDownloadPhotoBundle = false
-    }, 500)
+    }, 5000)
   }
 
   setupDownload () {

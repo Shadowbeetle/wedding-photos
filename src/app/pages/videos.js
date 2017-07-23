@@ -23,7 +23,7 @@ class Videos extends Component {
     this.props.store.videoToDownload = evt.target.name
     setTimeout(() => {
       this.props.store.shouldDownloadVideo = false
-    }, 500)
+    }, 5000)
   })
 
   setupDownload () {
