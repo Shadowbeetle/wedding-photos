@@ -5,6 +5,7 @@ import { map } from 'lodash'
 import locale from '../texts/locale.json'
 import Nav from '../components/nav'
 import Api from '../util/api'
+import './videos.css'
 
 const videoNamesToYoutube = new Map([
   [ 'professional/videos/VID_20140728_164537.mp4', 'ywzIK6Yji7c' ],
@@ -38,17 +39,21 @@ class Videos extends Component {
       <div>
         <Nav activePage="videos" lang={lang}/>
         {this.setupDownload()}
-        {map([ ...videoNamesToYoutube.entries() ], ([ videoKey, youtubeId ]) => {
-          return (
-            <div key={videoKey}>
-              <iframe width="480" height="270" src={`https://www.youtube.com/embed/${youtubeId}`} frameBorder="0"
-                      allowFullScreen title={videoKey}></iframe>
-              <button name={videoKey} className="btn btn-default" onClick={this.download}>
-                {locale.download[ lang ]}
-              </button>
-            </div>
-          )
-        })}
+        <div className="wedding-video-page-container">
+          {map([ ...videoNamesToYoutube.entries() ], ([ videoKey, youtubeId ]) => {
+            return (
+              <div className="wedding-video-container" key={videoKey}>
+                <iframe width="480" height="270" src={`https://www.youtube.com/embed/${youtubeId}`} frameBorder="0"
+                        allowFullScreen title={videoKey}></iframe>
+                <div className="wedding-video-download-button-container">
+                  <button name={videoKey} className="btn btn-default" onClick={this.download}>
+                    {locale.download[ lang ]}
+                  </button>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
