@@ -29,6 +29,8 @@ app.use(cors({
 app.get(['/', '/photos', '/videos'], routes.root)
 app.get('/api/media/photos', routes.media.photos.getAllPhotoNames.bind(null, models))
 app.get('/api/media/photos/:photoKey', routes.media.photos.getPhoto.bind(null, models))
+app.get('/api/media/videos', routes.media.videos.getAllVideoNames.bind(null, models))
+app.get('/api/media/videos/:videoKey', routes.media.videos.getVideo.bind(null, models))
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(publicPath))

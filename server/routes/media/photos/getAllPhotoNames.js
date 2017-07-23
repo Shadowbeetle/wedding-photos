@@ -1,8 +1,6 @@
 'use strict'
-const TYPE = 'photos'
-
 module.exports = function getAllPhotoNames (models, req, res) {
-  return models.weddingMedia.listMediaByType(TYPE)
+  return models.weddingMedia.listPhotos()
     .then((photoList) => res.send(photoList))
     .catch(err => {
       console.error(err)

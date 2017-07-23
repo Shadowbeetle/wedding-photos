@@ -7,7 +7,8 @@ class Store {
       thumbnails: observable.array(),
       fetching: false,
       isLightboxOpen: false,
-      lightboxImage: {}
+      lightboxImage: {},
+      videos: observable.array()
     })
   }
 
@@ -15,7 +16,11 @@ class Store {
     this.fetching = true
     Api.getMediaData(type)
       .then((resp) => {
-        this.thumbnails = observable(resp.data)
+        if (type === 'photos') {
+          this.thumbnails = observable(resp.data)
+        } else {
+          this.videos = observable(resp.data)
+        }
         this.fetching = false
       })
       .catch(err => {

@@ -10,13 +10,12 @@ const BUCKET_NAME = 'anna-tamas-eskuvo'
 
 /**
  *
- * @param {string} type: Either photos or videos
- * @returns {Promise<[string]>}
+ * @returns {Promise<[Object]>}
  */
-function listMediaByType (type) {
+function listPhotos () {
   return listObjects({
     Bucket: BUCKET_NAME,
-    Prefix: `professional/${type}/thumbnails`
+    Prefix: `professional/photos/thumbnails`
   })
     .then((objects) => {
       return _.chain(objects.Contents)
@@ -36,8 +35,28 @@ function listMediaByType (type) {
 }
 
 /**
- * @typedef {{ AcceptRanges: string, LastModified: Date, ContentLength: Number, ETag: string, ContentType: string, Metadata: Object, Body: Buffer }} S3Object
+ *
+ * @returns {Promise<[Object]>}
  */
+function listVideos () {
+  return listObjects({
+    Bucket: BUCKET_NAME,
+    Prefix: `professional/videos`
+  })
+    .then((objects) => {
+      return _.chain(objects.Contents)
+        .tail()
+        .map((content, i) => {
+          const name = path.basename(content.Key)
+          return {
+            name,
+            key: content.Key,
+            index: i
+          }
+        })
+        .value()
+    })
+}
 
 /**
  *
@@ -52,7 +71,8 @@ function getMediaByKey (name) {
 }
 
 module.exports = {
-  listMediaByType,
+  listPhotos,
+  listVideos,
   getMediaByKey
 }
 
