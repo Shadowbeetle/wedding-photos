@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { observer } from 'mobx-react'
-import { action } from 'mobx'
 import { map } from 'lodash'
 import locale from '../texts/locale.json'
 import Api from '../util/api'
@@ -54,6 +53,9 @@ class Photos extends Component {
 
   download = (evt) => {
     this.props.store.shouldDownloadPhotoBundle = true
+    setTimeout(() => {
+      this.props.store.shouldDownloadPhotoBundle = false
+    }, 500)
   }
 
   setupDownload () {
