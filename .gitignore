@@ -21,3 +21,4 @@ yarn-error.log*
 email.yaml
 recipients.csv
 **/__pycache__/**
+script/importVideoMap/videoData.js

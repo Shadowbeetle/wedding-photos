@@ -9,6 +9,7 @@
   -webkit-flex-direction: column; /* Safari 6.1+ */
   align-items: center; /*centers items on the cross-axis (y by default)*/
   justify-content: center;
+  min-height: 655px;
 }
 
 .wedding-video-download-button-container {

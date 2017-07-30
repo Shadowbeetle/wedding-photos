@@ -7,15 +7,11 @@ import Nav from '../components/nav'
 import Api from '../util/api'
 import './videos.css'
 
-const videoNamesToYoutube = new Map([
-  [ 'professional/videos/VID_20140728_164537.mp4', 'ywzIK6Yji7c' ],
-  [ 'professional/videos/VID_20170317_141720.mp4', 'fqZppJU6jlA' ]
-])
-
 class Videos extends Component {
   constructor (props) {
     super(props)
     this.props.store.shouldDownloadVideo = false
+    !props.store.videos.length && props.store.fetchMediaData('videos')
   }
 
   download = action((evt) => {
@@ -36,14 +32,14 @@ class Videos extends Component {
   }
 
   render () {
-    const { lang } = this.props
+    const { lang, store } = this.props
 
     return (
       <div>
         <Nav activePage="videos" lang={lang}/>
         {this.setupDownload()}
         <div className="wedding-video-page-container container">
-          {map([ ...videoNamesToYoutube.entries() ], ([ videoKey, youtubeId ]) => {
+          {map(store.videos, ({ aws: videoKey, youtube: youtubeId }) => {
             return (
               <div className="wedding-video-item-container" key={videoKey}>
                 <div className="wedding-video-container">

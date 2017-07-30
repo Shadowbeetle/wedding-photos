@@ -72,9 +72,14 @@ class Photos extends Component {
     return (
       <div className="container">
         <Nav activePage="photos" lang={lang}/>
-        <div className="wedding-photo-download-button-container">
-          <button onClick={this.download} className="btn btn-default">{locale.downloadAll[ lang ]}</button>
-        </div>
+        {store.thumbnails.length
+          ? (
+            <div className="wedding-photo-download-button-container">
+              <button onClick={this.download} className="btn btn-default">{locale.downloadAll[ lang ]}</button>
+            </div>
+          )
+          : null
+        }
         {this.setupDownload()}
         {store.fetching ? <LoadingSpinner/> : null}
         {this.renderLightbox()}
