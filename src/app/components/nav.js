@@ -9,8 +9,8 @@ import logo from '../../assets/img/logo.svg'
 
 class Nav extends Component {
   navigate = (evt) => {
-    page(`/${evt.target.name}${window.location.search}`)
     evt.preventDefault()
+    page(`/${evt.target.name}${window.location.search}`)
   }
 
   render () {
@@ -37,7 +37,7 @@ class Nav extends Component {
               <li className="nav-item">
                 <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'photos' })}
                    onClick={this.navigate}
-                   href="/photos"
+                   href={`/photos${window.location.search}`}
                    name="photos">
                   {locale.photos[ lang ]}
                 </a>
@@ -45,7 +45,7 @@ class Nav extends Component {
               <li className="nav-item">
                 <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'videos' })}
                    onClick={this.navigate}
-                   href="/videos"
+                   href={`/videos${window.location.search}`}
                    name="videos">
                   {locale.videos[ lang ]}
                 </a>
