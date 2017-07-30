@@ -32,7 +32,7 @@ class Store {
       })
   }
 
-  openLightbox (thumbnail) {
+  openLightbox = (thumbnail) => {
     runInAction (() => {
       this.isLightboxOpen = true
       this.lightboxImage = thumbnail

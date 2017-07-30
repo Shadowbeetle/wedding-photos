@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { action } from 'mobx'
-import { map } from 'lodash'
-import locale from '../texts/locale.json'
 import Nav from '../components/nav'
 import Api from '../util/api'
+import VideoGallery from '../components/videoGallery'
 import './videos.css'
 
 class Videos extends Component {
@@ -38,23 +37,11 @@ class Videos extends Component {
       <div>
         <Nav activePage="videos" lang={lang}/>
         {this.setupDownload()}
-        <div className="wedding-video-page-container container">
-          {map(store.videos, ({ aws: videoKey, youtube: youtubeId }) => {
-            return (
-              <div className="wedding-video-item-container" key={videoKey}>
-                <div className="wedding-video-container">
-                  <iframe width="480" height="270" src={`https://www.youtube.com/embed/${youtubeId}`} frameBorder="0"
-                        allowFullScreen title={videoKey}/>
-                </div>
-                <div className="wedding-video-download-button-container">
-                  <button name={videoKey} className="btn btn-default" onClick={this.download}>
-                    {locale.download[ lang ]}
-                  </button>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+        {
+          store.videos.length
+          ? <VideoGallery lang={lang} download={this.download} videos={store.videos}/>
+          : null
+        }
       </div>
     )
   }

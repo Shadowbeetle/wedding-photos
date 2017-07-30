@@ -1,20 +1,12 @@
 import React, { Component } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { observer } from 'mobx-react'
-import { map } from 'lodash'
 import locale from '../texts/locale.json'
 import Api from '../util/api'
 import Nav from '../components/nav'
 import LoadingSpinner from '../components/loadingSpinner'
+import PhotoGallery from '../components/photoGallery'
 import './photos.css'
-
-function normalizeDimensions ({ width, height }) {
-  const normalizedHeight = 250
-  return {
-    width: (normalizedHeight * width) / height,
-    height: normalizedHeight
-  }
-}
 
 class Photos extends Component {
   constructor (props) {
@@ -22,10 +14,6 @@ class Photos extends Component {
     document.title = locale.photos[ props.lang ]
     props.store.shouldDownloadPhotoBundle = false
     !props.store.thumbnails.length && props.store.fetchMediaData('photos')
-  }
-
-  handlePhotoClick = (thumbnail) => (evt) => {
-    this.props.store.openLightbox(thumbnail)
   }
 
   renderLightbox = () => {
@@ -72,36 +60,16 @@ class Photos extends Component {
     return (
       <div className="container">
         <Nav activePage="photos" lang={lang}/>
-        {store.thumbnails.length
-          ? (
-            <div className="wedding-photo-download-button-container">
-              <button onClick={this.download} className="btn btn-default">{locale.downloadAll[ lang ]}</button>
-            </div>
-          )
-          : null
-        }
         {this.setupDownload()}
         {store.fetching ? <LoadingSpinner/> : null}
         {this.renderLightbox()}
-        <div className="wedding-gallery-container">
-          <div className="wedding-grid">
-            {
-              map(store.thumbnails, (thumbnail) => {
-                const dimensions = normalizeDimensions(thumbnail.dimensions)
-                const src = Api.getMediaObjectUrl('photos', thumbnail.key)
-                return (
-                  <div key={thumbnail.index} className="wedding-photo-placeholder" style={dimensions}>
-                    <img onClick={this.handlePhotoClick(thumbnail)}
-                         alt=""
-                         className="wedding-photo"
-                         height={dimensions.height}
-                         src={src}/>
-                  </div>
-                )
-              })
-            }
-          </div>
-        </div>
+        {store.thumbnails.length
+          ? <PhotoGallery openLightbox={this.props.store.openLightbox} l
+                          lang={lang}
+                          download={this.download}
+                          thumbnails={store.thumbnails}/>
+          : null
+        }
       </div>
     )
   }
