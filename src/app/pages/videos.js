@@ -4,6 +4,7 @@ import { action } from 'mobx'
 import Nav from '../components/nav'
 import Api from '../util/api'
 import VideoGallery from '../components/videoGallery'
+import Subscribe from '../components/subscribe'
 import './videos.css'
 
 class Videos extends Component {
@@ -40,7 +41,7 @@ class Videos extends Component {
         {
           store.videos.length
           ? <VideoGallery lang={lang} download={this.download} videos={store.videos}/>
-          : null
+          : <Subscribe lang={lang} target="videos"/>
         }
       </div>
     )

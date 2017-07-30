@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Lightbox from 'react-image-lightbox'
 import { observer } from 'mobx-react'
-import locale from '../texts/locale.json'
+import locale from '../texts/locale'
 import Api from '../util/api'
 import Nav from '../components/nav'
 import LoadingSpinner from '../components/loadingSpinner'
 import PhotoGallery from '../components/photoGallery'
+import Subscribe from '../components/subscribe'
 import './photos.css'
 
 class Photos extends Component {
@@ -68,7 +69,7 @@ class Photos extends Component {
                           lang={lang}
                           download={this.download}
                           thumbnails={store.thumbnails}/>
-          : null
+          : <Subscribe lang={lang} target="photos"/>
         }
       </div>
     )

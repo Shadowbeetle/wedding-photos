@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import _ from 'lodash'
-import locale from '../texts/locale.json'
+import locale from '../texts/locale'
 import Api from '../util/api'
 
 function normalizeDimensions ({ width, height }) {
@@ -54,7 +54,7 @@ class PhotoGallery extends Component {
 }
 
 PhotoGallery.propTypes = {
-  thumbnails: PropTypes.arrayOf(PropTypes.shape({
+  thumbnails: PropTypes.objectOf(PropTypes.shape({
     dimensions: PropTypes.shape({
       height: PropTypes.number.isRequired,
       width: PropTypes.number.isRequired

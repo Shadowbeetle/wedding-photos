@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import _ from 'lodash'
-import locale from '../texts/locale.json'
+import locale from '../texts/locale'
 
 class VideoGallery extends Component {
   render () {
