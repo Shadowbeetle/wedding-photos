@@ -32,7 +32,7 @@ class Nav extends Component {
                 <span>{locale.title[ lang ]}</span>
               </a>
             </div>
-            <ul className="nav navbar-nav">
+            <ul className="nav navbar-nav navbar-right">
               <li className="nav-item">
                 <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'photos' })}
                    onClick={this.navigate}
@@ -49,9 +49,7 @@ class Nav extends Component {
                   {locale.videos[ lang ]}
                 </a>
               </li>
-            </ul>
-            <ul className="nav navbar-nav navbar-right">
-              <LangFlag targetLang={lang === 'hu' ? 'en' : 'hu'}/>
+                <LangFlag targetLang={lang === 'hu' ? 'en' : 'hu'}/>
             </ul>
           </div>
         </div>

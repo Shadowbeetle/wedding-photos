@@ -28,6 +28,11 @@
   font-size: 24px;
 }
 
+.nav-item > .wedding-navigate.active {
+  background: #fbffe8;
+  color: #566900;
+}
+
 .wedding-logo {
   max-height: 40px;
   margin-top: -10px;
