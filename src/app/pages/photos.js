@@ -68,7 +68,9 @@ class Photos extends Component {
                           lang={lang}
                           download={this.download}
                           thumbnails={store.thumbnails}/>
-          : <Subscribe lang={lang} target="photos"/>
+          : store.checkedExistenceOf.photos
+            ? <Subscribe lang={lang} target="photos"/>
+            : null
         }
         {store.fetching ? <LoadingSpinner/> : null}
       </div>

@@ -11,12 +11,20 @@ class Store {
       videos: observable.array(),
       shouldDownloadPhotoBundle: false,
       shouldDownloadVideo: false,
-      videoToDownload: ''
+      videoToDownload: '',
+      checkedExistenceOf: {
+        photos: false,
+        videos: false
+      }
     })
   }
 
   fetchMediaData (type) {
-    this.fetching = true
+    let done = false
+    setTimeout(() => {
+      this.fetching = !done
+    }, 200)
+
     Api.getMediaData(type)
       .then((resp) => {
         if (type === 'photos') {
@@ -25,9 +33,14 @@ class Store {
           this.videos = observable(resp.data)
         }
         this.fetching = false
+        this.checkedExistenceOf[type] = true
+        done = true
       })
       .catch(err => {
+        done = true
         this.fetching = false
+        this.checkedExistenceOf[type] = true
+        done = true
         console.error(err)
       })
   }
