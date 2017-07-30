@@ -62,7 +62,6 @@ class Photos extends Component {
       <div className="container">
         <Nav activePage="photos" lang={lang}/>
         {this.setupDownload()}
-        {store.fetching ? <LoadingSpinner/> : null}
         {this.renderLightbox()}
         {store.thumbnails.length
           ? <PhotoGallery openLightbox={this.props.store.openLightbox} l
@@ -71,6 +70,7 @@ class Photos extends Component {
                           thumbnails={store.thumbnails}/>
           : <Subscribe lang={lang} target="photos"/>
         }
+        {store.fetching ? <LoadingSpinner/> : null}
       </div>
     )
   }
