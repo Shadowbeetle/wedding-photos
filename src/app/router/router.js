@@ -8,11 +8,14 @@ import { globalStore } from '../stores'
 
 function parseQueryString(ctx, next) {
   ctx.query = qs.parse(window.location.search)
+  if (ctx.query.lang) {
+    window.localStorage.setItem('lang', ctx.query.lang)
+  }
   next()
 }
 
 function getLang(ctx, next) {
-  ctx.lang = ctx.query.lang || 'hu'
+  ctx.lang = ctx.query.lang || window.localStorage.getItem('lang') || 'hu'
   next()
 }
 

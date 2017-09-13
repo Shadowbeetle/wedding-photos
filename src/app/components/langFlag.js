@@ -16,6 +16,7 @@ class LangFlag extends Component {
   handleClick = (evt) => {
     evt.preventDefault()
     page(`${window.location.pathname}?lang=${this.props.targetLang}`)
+    window.localStorage.setItem('lang', this.props.targetLang)
   }
 
   render () {
