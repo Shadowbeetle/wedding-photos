@@ -56,7 +56,7 @@ app.get('/api/guest/:guestId/media/videos',
   compression(),
   mediaGuard([]),
   routes.media.videos.getAllVideoNames.bind(null, models))
-app.get('/api/media/videos/:videoKey',
+app.get('/api/guest/:guestId/media/videos/:videoKey',
   middlewares.authorize(models),
   mediaGuard(null, 404),
   routes.media.videos.getVideo.bind(null, models))
