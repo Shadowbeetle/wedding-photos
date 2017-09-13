@@ -24,7 +24,7 @@ const guestSchema = new Schema({
     type: [String], required: true
   },
   email: {
-    type: String, unique: true
+    type: [String], unique: true
   },
   preferredLanguage: {
     type: String, enum: ['en', 'hu']
@@ -32,11 +32,6 @@ const guestSchema = new Schema({
 })
 
 guestSchema.pre('save', function (next) {
-  this.loginNames = this.loginNames.map((name) => name.toLowerCase())
-  next()
-})
-
-guestSchema.pre('update', function (next) {
   this.loginNames = this.loginNames.map((name) => name.toLowerCase())
   next()
 })
@@ -66,6 +61,10 @@ Guest.greet = function () {}
  */
 Guest.add = function (newGuest) {
   return new Guest(newGuest).save()
+}
+
+Guest.subscribe = function (id, email) {
+  return Guest.update({ id }, { $addToSet: { email } })
 }
 
 module.exports = Guest

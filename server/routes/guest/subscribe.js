@@ -1,13 +1,10 @@
 'use strict'
+'use strict'
 module.exports = function getGuest (models, req, res) {
   const Guest = models.Guest
-  Guest.findByGuestId(req.params.guestId)
-    .then((guest) => {
-      if (guest) {
-        return res.sendStatus(200)
-      } else {
-        res.sendStatus(403)
-      }
+  Guest.subscribe(req.params.guestId, req.body.email)
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch((err) => {
       console.error(err)

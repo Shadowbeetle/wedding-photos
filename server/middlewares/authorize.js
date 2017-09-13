@@ -13,7 +13,7 @@ module.exports = function authorize (models) {
       })
       .catch((err) => {
         console.error({ id, err })
-        res.send('There was an error processing your request. Please contact the bridegroom.')
+        res.status(500).send('There was an error processing your request. Please contact the bridegroom.')
       })
   }
 }

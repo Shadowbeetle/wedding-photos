@@ -67,7 +67,7 @@ class Store {
       }))
   }
 
-  sendEmail (email) {
+  sendEmail = (email) => {
     return Api.sendEmail(email, this.guestId)
   }
 

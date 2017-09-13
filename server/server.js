@@ -1,5 +1,6 @@
 'use strict'
 const express = require('express')
+const bodyParser = require('body-parser')
 const compression = require('compression')
 const path = require('path')
 const cors = require('cors')
@@ -32,10 +33,14 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
+app.use(bodyParser.json())
+
 const mediaGuard = util.mediaGuard
 app.get([ '/', '/photos', '/videos' ], compression(), routes.root)
 
 app.get('/api/guest/:guestId', routes.guest.getGuest.bind(null, models))
+
+app.post('/api/guest/:guestId/subscribe', routes.guest.subscribe.bind(null, models))
 
 app.get('/api/guest/:guestId/media/photos',
   middlewares.authorize(models),
