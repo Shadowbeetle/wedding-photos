@@ -34,7 +34,7 @@ class PhotoGallery extends Component {
             {
               _.map(this.props.thumbnails, (thumbnail) => {
                 const dimensions = normalizeDimensions(thumbnail.dimensions)
-                const src = Api.getMediaObjectUrl('photos', thumbnail.key)
+                const src = Api.getMediaObjectUrl('photos', thumbnail.key, this.props.store.guestId)
                 return (
                   <div key={thumbnail.index} className="wedding-photo-placeholder" style={dimensions}>
                     <img onClick={this.handlePhotoClick(thumbnail)}

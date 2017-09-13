@@ -26,7 +26,7 @@ class Videos extends Component {
     const { shouldDownloadVideo, videoToDownload } = this.props.store
     return shouldDownloadVideo
       ? <iframe title="download"
-                src={Api.getMediaObjectUrl('videos', videoToDownload)}
+                src={Api.getMediaObjectUrl('videos', videoToDownload, this.props.store.guestId)}
                 style={{ visibility: 'hidden', display: 'none' }}/>
       : null
   }
@@ -40,7 +40,7 @@ class Videos extends Component {
         {this.setupDownload()}
         {
           store.videos.length
-          ? <VideoGallery lang={lang} download={this.download} videos={store.videos}/>
+          ? <VideoGallery lang={lang} download={this.download} videos={store.videos} guestId={store.guestId}/>
           : store.checkedExistenceOf.videos
             ? <Subscribe lang={lang} target="videos"/>
             : null

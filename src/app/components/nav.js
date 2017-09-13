@@ -61,7 +61,8 @@ class Nav extends Component {
 
 Nav.propTypes = {
   lang: PropTypes.oneOf([ 'hu', 'en' ]).isRequired,
-  activePage: PropTypes.oneOf([ 'photos', 'videos' ]).isRequired
+  activePage: PropTypes.oneOf([ 'photos', 'videos' ]).isRequired,
+  guestId: PropTypes.string.isRequired
 }
 
 export default Nav

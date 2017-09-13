@@ -22,11 +22,11 @@ class Photos extends Component {
     const { store } = this.props
     const image = store.lightboxImage
     const thumbnails = store.thumbnails
-    const mainSrc = Api.getMediaObjectUrl('photos', image.largeKey)
+    const mainSrc = Api.getMediaObjectUrl('photos', image.largeKey, store.guestId)
     const nextImage = thumbnails[ (image.index + 1) % thumbnails.length ]
-    const nextSrc = Api.getMediaObjectUrl('photos', nextImage.largeKey)
+    const nextSrc = Api.getMediaObjectUrl('photos', nextImage.largeKey, store.guestId)
     const prevImage = thumbnails[ (image.index + thumbnails.length - 1) % thumbnails.length ]
-    const prevSrc = Api.getMediaObjectUrl('photos', prevImage.largeKey)
+    const prevSrc = Api.getMediaObjectUrl('photos', prevImage.largeKey, store.guestId)
     return (
       <Lightbox
         mainSrc={mainSrc}
@@ -51,7 +51,7 @@ class Photos extends Component {
     const { shouldDownloadPhotoBundle } = this.props.store
     return shouldDownloadPhotoBundle
       ? <iframe title="download"
-                src={Api.getPhotoBundleUrl()}
+                src={Api.getPhotoBundleUrl(this.props.store.guestId)}
                 style={{ visibility: 'hidden', display: 'none' }}/>
       : null
   }
@@ -60,7 +60,7 @@ class Photos extends Component {
     const { lang, store } = this.props
     return (
       <div className="container">
-        <Nav activePage="photos" lang={lang}/>
+        <Nav activePage="photos" lang={lang} guestId={store.guestId}/>
         {this.setupDownload()}
         {this.renderLightbox()}
         {store.thumbnails.length

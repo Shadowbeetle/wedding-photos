@@ -1,11 +1,13 @@
-import { observable, extendObservable, runInAction } from 'mobx'
+import { observable, extendObservable, runInAction, action } from 'mobx'
 import Api from '../util/api'
+import _ from 'lodash'
 
 class Store {
   constructor () {
     extendObservable(this, {
       thumbnails: observable.array(),
       fetching: false,
+      authorizing: false,
       isLightboxOpen: false,
       lightboxImage: {},
       videos: observable.array(),
@@ -15,7 +17,9 @@ class Store {
       checkedExistenceOf: {
         photos: false,
         videos: false
-      }
+      },
+      isUnauthorized: true,
+      guestId: ''
     })
   }
 
@@ -25,8 +29,8 @@ class Store {
       this.fetching = !done
     }, 200)
 
-    Api.getMediaData(type)
-      .then((resp) => {
+    return Api.getMediaData(type, this.guestId)
+      .then(action((resp) => {
         if (type === 'photos') {
           this.thumbnails = observable(resp.data)
         } else {
@@ -35,14 +39,32 @@ class Store {
         this.fetching = false
         this.checkedExistenceOf[type] = true
         done = true
-      })
-      .catch(err => {
+      }))
+      .catch(action(err => {
         done = true
         this.fetching = false
         this.checkedExistenceOf[type] = true
         done = true
         console.error(err)
-      })
+      }))
+  }
+
+  fetchUser (id) {
+    this.authorizing = true
+    return Api.getGuest(id)
+      .then(action(() => {
+        this.isUnauthorized = false
+        this.guestId = id
+        this.authorizing = false
+        localStorage.setItem('guestId', id)
+      }))
+      .catch(action((err) => {
+        if (_.get(err, 'response.status') === 403) {
+          throw err
+        } else {
+          console.error(err)
+        }
+      }))
   }
 
   openLightbox = (thumbnail) => {

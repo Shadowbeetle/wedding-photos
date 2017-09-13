@@ -10,6 +10,8 @@ const app = express()
 const publicPath = path.join(__dirname, '../build')
 const config = require('../config')
 const util = require('./util')
+const middlewares = require('./middlewares')
+
 if (process.env.NODE_ENV === 'production' && process.env.IS_HEROKU) {
   app.use((req, res, next) => {
     if (req.headers[ 'x-forwarded-proto' ] !== 'https') {
@@ -20,7 +22,6 @@ if (process.env.NODE_ENV === 'production' && process.env.IS_HEROKU) {
     }
   })
 }
-
 app.use(helmet({
   frameguard: process.env.NODE_ENV === 'production'
     ? { action: 'sameorigin' }
@@ -33,22 +34,30 @@ app.use(cors({
 
 const mediaGuard = util.mediaGuard
 app.get([ '/', '/photos', '/videos' ], compression(), routes.root)
-app.get('/api/media/photos',
+
+app.get('/api/guest/:guestId', routes.guest.getGuest.bind(null, models))
+
+app.get('/api/guest/:guestId/media/photos',
+  middlewares.authorize(models),
   mediaGuard([]),
   compression(),
   routes.media.photos.getAllPhotoNames.bind(null, models))
-app.get('/api/media/photos/photo-bundle',
+app.get('/api/guest/:guestId/media/photos/photo-bundle',
+  middlewares.authorize(models),
   mediaGuard(null, 404),
   routes.media.photos.getPhotoBundle.bind(null, models))
-app.get('/api/media/photos/:photoKey',
+app.get('/api/guest/:guestId/media/photos/:photoKey',
+  middlewares.authorize(models),
   compression(),
   mediaGuard(null, 404),
   routes.media.photos.getPhoto.bind(null, models))
-app.get('/api/media/videos',
+app.get('/api/guest/:guestId/media/videos',
+  middlewares.authorize(models),
   compression(),
   mediaGuard([]),
   routes.media.videos.getAllVideoNames.bind(null, models))
 app.get('/api/media/videos/:videoKey',
+  middlewares.authorize(models),
   mediaGuard(null, 404),
   routes.media.videos.getVideo.bind(null, models))
 
