@@ -67,6 +67,10 @@ class Store {
       }))
   }
 
+  sendEmail (email) {
+    return Api.sendEmail(email, this.guestId)
+  }
+
   openLightbox = (thumbnail) => {
     runInAction (() => {
       this.isLightboxOpen = true

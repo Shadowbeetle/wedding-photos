@@ -30,5 +30,17 @@ module.exports = {
   subscribe: {
     hu: 'Hagyd meg az email címed, és írunk, ha kész lesznek.',
     en: 'Leave, your eamil address and we\'ll let you know when they are ready.'
+  },
+  submit: {
+    hu: 'Küldés',
+    en: 'Submit'
+  },
+  emailSentSuccessfully: {
+    hu: 'Köszönjük! Az elsők között értesítünk, ha felkerültek a képek és a videók',
+    en: "Thank you! You'll be notified when the photos and videos are ready"
+  },
+  emailSendFailed: {
+    hu: 'Ajjajj, valami nem működik. Kérlek értesítsd a vőlegényt!',
+    en: 'Oh, snap! Something went wrong, please notify the bridegroom.'
   }
 }

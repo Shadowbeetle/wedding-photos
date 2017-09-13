@@ -15,7 +15,11 @@ Api.getPhotoBundleUrl = function (guestId) {
   return `${baseUrl}/api/guest/${guestId}/media/photos/photo-bundle`
 }
 
-Api.getGuest = function (id) {
-  return axios.get(`${baseUrl}/api/guest/${id}`)
+Api.getGuest = function (guestId) {
+  return axios.get(`${baseUrl}/api/guest/${guestId}`)
+}
+
+Api.sendEmail = function (email, guestId) {
+  return axios.post(`${baseUrl}/api/guest/${guestId}/subscribe`, { email })
 }
 export default Api

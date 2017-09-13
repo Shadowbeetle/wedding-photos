@@ -42,7 +42,7 @@ class Videos extends Component {
           store.videos.length
           ? <VideoGallery lang={lang} download={this.download} videos={store.videos} guestId={store.guestId}/>
           : store.checkedExistenceOf.videos
-            ? <Subscribe lang={lang} target="videos"/>
+            ? <Subscribe lang={lang} target="videos" handleSubmit={store.sendEmail}/>
             : null
         }
       </div>

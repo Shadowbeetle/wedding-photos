@@ -5,3 +5,11 @@
   align-items: center; /*centers items on the cross-axis (y by default)*/
   justify-content: center;
 }
+
+.wedding-submit-button {
+  margin-top: 5px;
+}
+
+.wedding-email-input {
+  width: 220px;
+}
