@@ -36,7 +36,8 @@ app.use(cors({
 app.use(bodyParser.json())
 
 const mediaGuard = util.mediaGuard
-app.get([ '/', '/photos', '/videos' ], compression(), routes.root)
+app.get([ '/', '/photos', '/videos', '/guest/:guestId', '/guest/:guestId/photos', '/guest/:guestId/videos' ],
+  compression(), routes.root)
 
 app.get('/api/guest/:guestId', routes.guest.getGuest.bind(null, models))
 
