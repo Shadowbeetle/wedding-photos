@@ -10,11 +10,11 @@ import logo from '../../assets/img/logo.svg'
 class Nav extends Component {
   navigate = (evt) => {
     evt.preventDefault()
-    page(`/${evt.target.name}${window.location.search}`)
+    page(`/guest/${this.props.guestId}/${evt.target.name}${window.location.search}`)
   }
 
   render () {
-    const { activePage, lang } = this.props
+    const { activePage, lang, guestId } = this.props
     return (
       <nav className="navbar navbar-default navbar-fixed-top navbar-toggleable-md wedding-navbar">
         <div className="container">
@@ -37,7 +37,7 @@ class Nav extends Component {
               <li className="nav-item">
                 <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'photos' })}
                    onClick={this.navigate}
-                   href={`/photos${window.location.search}`}
+                   href={`/guest/${guestId}/photos${window.location.search}`}
                    name="photos">
                   {locale.photos[ lang ]}
                 </a>
@@ -45,7 +45,7 @@ class Nav extends Component {
               <li className="nav-item">
                 <a className={classNames('nav-link wedding-navigate', { 'active': activePage === 'videos' })}
                    onClick={this.navigate}
-                   href={`/videos${window.location.search}`}
+                   href={`/guest/${guestId}/videos${window.location.search}`}
                    name="videos">
                   {locale.videos[ lang ]}
                 </a>

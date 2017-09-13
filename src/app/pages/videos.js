@@ -36,7 +36,7 @@ class Videos extends Component {
 
     return (
       <div>
-        <Nav activePage="videos" lang={lang}/>
+        <Nav activePage="videos" lang={lang} guestId={store.guestId}/>
         {this.setupDownload()}
         {
           store.videos.length
