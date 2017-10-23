@@ -21,6 +21,7 @@ function listPhotos () {
     .then((objects) => {
       return _.chain(objects.Contents)
         .tail()
+        .filter((content) => metadata[path.basename(content.Key)])
         .map((content, i) => {
           const name = path.basename(content.Key)
           const thumbnailObject = {

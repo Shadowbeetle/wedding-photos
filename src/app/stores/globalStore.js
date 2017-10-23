@@ -32,7 +32,7 @@ class Store {
     return Api.getMediaData(type, this.guestId)
       .then(action((resp) => {
         if (type === 'photos') {
-          this.thumbnails = observable(_.filter(resp.data, (data) => data.dimensions))
+          this.thumbnails = observable(resp.data)
         } else {
           this.videos = observable(resp.data)
         }
