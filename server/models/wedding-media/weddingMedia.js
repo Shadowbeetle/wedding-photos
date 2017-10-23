@@ -23,13 +23,15 @@ function listPhotos () {
         .tail()
         .map((content, i) => {
           const name = path.basename(content.Key)
-          return {
+          const thumbnailObject = {
             name,
             key: content.Key,
             largeKey: content.Key.replace('thumbnails', 'large'),
             dimensions: metadata[ name ],
             index: i
           }
+          console.log(JSON.stringify(thumbnailObject, null, 2))
+          return thumbnailObject
         })
         .value()
     })
