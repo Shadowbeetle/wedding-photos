@@ -30,7 +30,6 @@ function listPhotos () {
             dimensions: metadata[ name ],
             index: i
           }
-          console.log(JSON.stringify(thumbnailObject, null, 2))
           return thumbnailObject
         })
         .value()
