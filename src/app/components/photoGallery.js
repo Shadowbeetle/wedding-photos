@@ -34,7 +34,7 @@ class PhotoGallery extends Component {
             {
               _.map(this.props.thumbnails, (thumbnail) => {
                 const dimensions = normalizeDimensions(thumbnail.dimensions)
-                const src = Api.getMediaObjectUrl('photos', thumbnail.key, this.props.store.guestId)
+                const src = Api.getMediaObjectUrl('photos', thumbnail.key, this.props.guestId)
                 return (
                   <div key={thumbnail.index} className="wedding-photo-placeholder" style={dimensions}>
                     <img onClick={this.handlePhotoClick(thumbnail)}
@@ -63,7 +63,8 @@ PhotoGallery.propTypes = {
   })),
   download: PropTypes.func.isRequired,
   lang: PropTypes.oneOf(['en', 'hu']).isRequired,
-  openLightbox: PropTypes.func.isRequired
+  openLightbox: PropTypes.func.isRequired,
+  guestId: PropTypes.string.isRequired
 }
 
 export default observer(PhotoGallery)

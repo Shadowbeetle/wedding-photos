@@ -67,7 +67,8 @@ class Photos extends Component {
           ? <PhotoGallery openLightbox={this.props.store.openLightbox} l
                           lang={lang}
                           download={this.download}
-                          thumbnails={store.thumbnails}/>
+                          thumbnails={store.thumbnails}
+                          guestId={store.guestId}/>
           : store.checkedExistenceOf.photos
             ? <Subscribe lang={lang} target="photos" handleSubmit={store.sendEmail}/>
             : null
