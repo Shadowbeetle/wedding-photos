@@ -6,9 +6,13 @@ import locale from '../texts/locale'
 import Api from '../util/api'
 
 function normalizeDimensions ({ width, height }) {
-  const normalizedHeight = 250
+  const targetHeight = 250
+  const maxWidth = window.innerWidth - 90
+  const targetWidth = (targetHeight * width) / height
+  const normalizedWidth = targetWidth > maxWidth ? maxWidth : targetWidth
+  const normalizedHeight = targetWidth > maxWidth ? (maxWidth * height) / width : targetHeight
   return {
-    width: (normalizedHeight * width) / height,
+    width: normalizedWidth,
     height: normalizedHeight
   }
 }
@@ -40,7 +44,7 @@ class PhotoGallery extends Component {
                     <img onClick={this.handlePhotoClick(thumbnail)}
                          alt=""
                          className="wedding-photo"
-                         height={dimensions.height}
+                         width={dimensions.width}
                          src={src}/>
                   </div>
                 )
